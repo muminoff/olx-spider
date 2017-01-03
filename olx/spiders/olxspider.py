@@ -4,8 +4,8 @@ import json
 import string
 
 
-class PhoneNumberSpider(scrapy.Spider):
-    name = "olxspider"
+class PhoneNumberCrawler(scrapy.Spider):
+    name = "phone-number-crawler"
     allowed_domains = ["olx.uz"]
     start_urls = ['http://olx.uz/moda-i-stil/krasota-zdorove/parfyumeriya/']
 
