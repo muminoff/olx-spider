@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import json
+import string
 
 
-class OlxspiderSpider(scrapy.Spider):
+class PhoneNumberSpider(scrapy.Spider):
     name = "olxspider"
     allowed_domains = ["olx.uz"]
     start_urls = ['http://olx.uz/moda-i-stil/krasota-zdorove/parfyumeriya/']
@@ -25,4 +26,6 @@ class OlxspiderSpider(scrapy.Spider):
 
     def parse_phone_number(self, response):
         if 'value' in response.text:
-            return json.loads(response.text)
+            obj = json.loads(response.text)
+            phone_number = ''.join(filter(lambda x: x.isdigit(), obj['value']))
+            return {'number': phone_number}
